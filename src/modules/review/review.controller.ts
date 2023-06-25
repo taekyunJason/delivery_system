@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { ReviewDto } from './dto/reviewDto';
+import { Review } from './review.entity';
 
-@Controller('user/review')
-export class ReviewController { }
+@Controller('review')
+export class ReviewController {
+  @Get()
+  getReview(): ReviewDto {
+    const reviewDto = new ReviewDto();
+    return reviewDto;
+  }
+
+}

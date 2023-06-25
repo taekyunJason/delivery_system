@@ -4,9 +4,15 @@ import { Review } from "./review.entity";
 import { ReviewService } from "./review.service";
 
 const mockData = {
+
   reviews: [
     { id: 1, content: "this is review test1.", orderId: 1, userId: 1 },
     { id: 2, content: "this is review test2.", orderId: 2, userId: 2 }
+  ],
+  orderDeliveryDtos: [
+    { id: 1, deliveryTime: new Date() },
+    { id: 2, deliveryTime: new Date() },
+    { id: 3, deliveryTime: null }
   ]
 }
 

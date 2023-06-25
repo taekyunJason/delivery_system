@@ -19,8 +19,15 @@ export class ReviewService {
   }
 
   async createReview(orderId: number, userId: number, content: string) {
+    let resultCode = 1000;
     const orderDeliveryDto =
       await this.reviewRepository.findOrderForReview(orderId);
+    if (orderDeliveryDto.deliveryTime == null) {
+      resultCode = 2000;
+    };
+
+    const now = new Date();
+    // if (orderDeliveryDto.deliveryTime <= (now.getTime - 24 * 60 * 60 * 1000))
 
   }
 
