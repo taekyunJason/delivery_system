@@ -2,16 +2,16 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Review {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
-  @Column()
+  @Column("varchar", { name: "content" })
   content: string;
 
-  @Column()
-  orderId: number;
+  @Column("int", { name: "deliveryId" })
+  deliveryId: number;
 
-  @Column()
+  @Column("int", { name: "userId" })
   userId: number;
 
 }

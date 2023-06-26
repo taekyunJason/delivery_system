@@ -2,27 +2,24 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
 import { Review } from "./review.entity";
 import { Repository } from 'typeorm';
-import { OrderDeliveryDto } from "./dto/orderDeliveryDto";
+import { ReviewDto } from "./dto/reviewDto";
 
 @Injectable()
 export class ReviewRepository {
   constructor(@InjectRepository(Review) private review: Repository<Review>) { }
-  // async findOne(id: number): Promise<Review> {
-  //   const review = new Review();
-  //   review.id = id;
-  //   return review;
-  // }
-
-  // async findOneReview(reviewId: number): Promise<Review> {
-  //   const result = await this.review.findOne({ where: { id: reviewId } });
-  //   return result;
-  // }
 
   async findOneReview(reviewId: number): Promise<Review> {
-    return await this.review.findOne({ where: { id: reviewId } });
+    const review = await this.review.findOne({ where: { id: reviewId } });
+    return review;
+    // return new ReviewDto(review);
   }
 
-  async findOrderForReview(orderId: number): Promise<OrderDeliveryDto> {
-    return new OrderDeliveryDto();
+  async createReview(content: string, deliveryId: number, userId: number) {
+    // const newReview = this.review.create();
+    const newReview = new Review();
+    newReview.content = content;
+    newReview.deliveryId = deliveryId;
+    newReview.userId = userId;
+    return newReview;
   }
 }
