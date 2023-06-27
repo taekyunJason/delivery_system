@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { Review } from "./review.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ReviewRepository } from "./review.repository";
@@ -17,12 +17,17 @@ export class ReviewService {
     return review;
   }
 
-  async createReview(orderId: number, userId: number, content: string) {
+  async createReview(deliveryId: number, userId: number, content: string) {
     const resultCode = 1000;
     const now = new Date();
-    const delivery = await this.deliveryRepository.findDeliveryByOrderId(
-      orderId,
-    );
+    const delivery = await this.deliveryRepository.findDeliveryById(deliveryId);
+
+    const reviews = await this.reviewRepository.findReviewByDeliveryId(
+      deliveryId)
+
+    if (reviews.length > 0) {
+      throw new BadRequestException('이미 리뷰가 작성되었습니다.');
+    }
 
     if (delivery == null) {
       throw new BadRequestException('존재하지 않는 배달건입니다.');
