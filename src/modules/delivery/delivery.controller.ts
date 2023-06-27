@@ -15,13 +15,3 @@ export class DeliveryController {
     return this.deliveryService.getHello();
   }
 }
-
-function getOwnerSignin(): User {
-  const newUser: User = {
-    id: 'jason11',
-    email: 'jason@gmail.com',
-  };
-
-  return newUser;
-}
-export { getOwnerSignin };
