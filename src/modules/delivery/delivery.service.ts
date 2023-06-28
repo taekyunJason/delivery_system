@@ -1,4 +1,4 @@
-import { BadGatewayException, BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { Delivery } from "./delivery.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -26,8 +26,10 @@ export class DeliveryService {
     if (updated.departureMessage != '배달 시작') {
       throw new BadRequestException('잘못된 알림이 전송되었습니다.')
     }
-
-    if (updated.departureAlimToUser == null || false) {
+    if (
+      updated.departureAlimToUser == null ||
+      updated.departureAlimToUser == false
+    ) {
       throw new BadRequestException('유저 알림 전송에 실패했습니다.')
     }
   }
@@ -39,21 +41,26 @@ export class DeliveryService {
     );
     if (updated.arrivalTime == null) {
       throw new BadRequestException(
-        '배달 완료 시간이 업데이트 되지 않았습니다.',
-      );
+        '배달 완료 시간이 업데이트 되지 않았습니다.');
     }
     if (updated.deliveryStatus != 'end') {
-      throw new BadRequestException('올바르지 않은 배달 시작 상태 입니다.');
+      throw new BadRequestException('올바르지 않은 배달 상태 입니다.');
     }
     if (updated.arrivalMessage != '배달 완료') {
       throw new BadRequestException('잘못된 알림이 전송되었습니다.')
     }
 
-    if (updated.arrivalAlimToUser == null || false) {
+    if (
+      updated.arrivalAlimToUser == null ||
+      updated.arrivalAlimToUser == false
+    ) {
       throw new BadRequestException('유저에게 알림이 전송되지 않았습니다.')
     }
 
-    if (updated.arrivalAlimToOwner == null || false) {
+    if (
+      updated.arrivalAlimToOwner == null ||
+      updated.arrivalAlimToOwner == false
+    ) {
       throw new BadRequestException('사장님에게 알림이 전송되지 않았습니다.')
     }
   }
