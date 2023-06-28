@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Review } from "./review.entity";
 import { Repository } from 'typeorm';
 import { ReviewDto } from "./dto/reviewDto";
+import { Delivery } from "../delivery/delivery.entity";
 
 @Injectable()
 export class ReviewRepository {
@@ -21,5 +22,10 @@ export class ReviewRepository {
     newReview.deliveryId = deliveryId;
     newReview.userId = userId;
     return newReview;
+  }
+
+  async findReviewByDeliveryId(deliveryId: number): Promise<Review[]> {
+    const result = await this.review.find({ where: { deliveryId } });
+    return result;
   }
 }

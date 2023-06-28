@@ -1,6 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-import { DeliveryStatus } from "./deliveryStatus";
-
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { DeliveryStatus } from './deliveryStatus';
 
 @Entity()
 export class Delivery {
@@ -17,8 +16,29 @@ export class Delivery {
   arrivalTime: Date;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     length: 20,
   })
   deliveryStatus: string;
+
+  @Column({
+    type: 'varchar',
+  })
+  departureMessage: string;
+
+  @Column({
+    type: 'varchar',
+  })
+  arrivalMessage: string;
+
+  @Column()
+  departureAlimToUser: boolean;
+
+  @Column()
+  arrivalAlimToUser: boolean;
+
+  @Column()
+  arrivalAlimToOwner: boolean;
+
+
 }
