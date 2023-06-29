@@ -1,6 +1,6 @@
 import { Controller } from "@nestjs/common";
 
-@Controller("delivery")
-export class DeliveryController {
+@Controller("menu")
+export class MenuController {
   // constructor(private deliveryService)
 }
