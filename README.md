@@ -13,14 +13,12 @@
 
 ## Getting Started
 ```bash
-# development
-$ npm run start
+# build
+$ docker build . -t delivery_system
 
-# watch mode
-$ npm run start:dev
+# run
+$ docker container run -d -p 3000:3000 delivery_sytem
 
-# production mode
-$ npm run start:prod
 ```
 ## Swagger
 ![화면 캡처 2023-06-30 012752](https://github.com/taekyunJason/delivery_system/assets/44867889/8969e244-f75e-4e92-b32d-b128a92932fb)
