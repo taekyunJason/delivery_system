@@ -16,8 +16,8 @@ const config: SqliteConnectionOptions = {
 }
 
 @Module({
-  imports: [ReviewModule, TypeOrmModule.forRoot(config)],
-  controllers: [AppController, ReviewController],
+  imports: [ TypeOrmModule.forRoot(config)],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule { }

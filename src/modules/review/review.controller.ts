@@ -4,10 +4,7 @@ import { Review } from './review.entity';
 
 @Controller('review')
 export class ReviewController {
-  @Get()
-  getReview(): ReviewDto {
-    const reviewDto = new ReviewDto();
-    return reviewDto;
-  }
+
+
 
 }
